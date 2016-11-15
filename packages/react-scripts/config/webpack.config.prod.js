@@ -123,8 +123,15 @@ module.exports = {
         loader: 'babel',
         // @remove-on-eject-begin
         query: {
-          babelrc: false,
-          presets: [require.resolve('babel-preset-react-app')],
+          babelrc: true,
+          presets: [
+            require.resolve('babel-preset-react-app'),
+            require.resolve('babel-preset-stage-0')
+          ],
+          plugins: [
+            require.resolve('babel-plugin-transform-class-properties'),
+            require.resolve('babel-plugin-transform-decorators-legacy')
+          ],
         },
         // @remove-on-eject-end
       },

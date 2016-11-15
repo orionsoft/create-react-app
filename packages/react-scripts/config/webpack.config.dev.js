@@ -117,8 +117,15 @@ module.exports = {
         loader: 'babel',
         query: {
           // @remove-on-eject-begin
-          babelrc: false,
-          presets: [require.resolve('babel-preset-react-app')],
+          babelrc: true,
+          presets: [
+            require.resolve('babel-preset-react-app'),
+            require.resolve('babel-preset-stage-0')
+          ],
+          plugins: [
+            require.resolve('babel-plugin-transform-class-properties'),
+            require.resolve('babel-plugin-transform-decorators-legacy')
+          ],
           // @remove-on-eject-end
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/

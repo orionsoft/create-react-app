@@ -78,14 +78,12 @@ function setupCompiler(host, port, protocol) {
     // them in a readable focused way.
     var messages = formatWebpackMessages(stats.toJson({}, true));
     if (!messages.errors.length && !messages.warnings.length) {
-      console.log(chalk.green('Compiled successfully!'));
-      console.log();
       console.log('The app is running at:');
       console.log();
       console.log('  ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
       console.log();
-      console.log('Note that the development build is not optimized.');
-      console.log('To create a production build, use ' + chalk.cyan('npm run build') + '.');
+      console.log(chalk.bold('orionsoft.io'));
+      console.log(paths.appIndexJs, paths.appHtml)
       console.log();
     }
 

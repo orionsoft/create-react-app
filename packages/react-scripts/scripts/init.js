@@ -24,10 +24,11 @@ module.exports = function(appPath, appName, verbose, originalDirectory) {
 
   // Setup the script rules
   appPackage.scripts = {
-    'start': 'react-scripts start',
-    'build': 'react-scripts build',
-    'test': 'react-scripts test --env=jsdom',
-    'eject': 'react-scripts eject'
+    'start': './node_modules/orionsoft-react-scripts/bin/react-scripts.js start',
+    'start:watch': 'watch npm\\ start ./node_modules/orionsoft-react-scripts',
+    'build': './node_modules/orionsoft-react-scripts/bin/react-scripts.js build',
+    'test': './node_modules/orionsoft-react-scripts/bin/react-scripts.js test --env=jsdom',
+    'eject': './node_modules/orionsoft-react-scripts/bin/react-scripts.js eject'
   };
 
   fs.writeFileSync(

@@ -71,7 +71,7 @@ module.exports = {
 // @remove-on-eject-end
 
 // config before publish: we're in ./packages/react-scripts/config/
-if (__dirname.indexOf(path.join('packages', 'react-scripts', 'config')) !== -1) {
+if (false && __dirname.indexOf(path.join('packages', 'react-scripts', 'config')) !== -1) {
   module.exports = {
     appBuild: resolveOwn('../../../build'),
     appPublic: resolveOwn('../template/public'),
