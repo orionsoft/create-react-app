@@ -83,7 +83,6 @@ function setupCompiler(host, port, protocol) {
       console.log('  ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
       console.log();
       console.log(chalk.bold('orionsoft.io'));
-      console.log(paths.appIndexJs, paths.appHtml)
       console.log();
     }
 
