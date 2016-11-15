@@ -78,11 +78,10 @@ function setupCompiler(host, port, protocol) {
     // them in a readable focused way.
     var messages = formatWebpackMessages(stats.toJson({}, true));
     if (!messages.errors.length && !messages.warnings.length) {
-      console.log('The app is running at:');
-      console.log();
-      console.log('  ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
       console.log();
       console.log(chalk.bold('orionsoft.io'));
+      console.log();
+      console.log('App running at ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
       console.log();
     }
 
