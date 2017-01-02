@@ -1,6 +1,6 @@
 {
   "name": "orionsoft-react-scripts",
-  "version": "0.8.5",
+  "version": "0.8.4",
   "description": "Orionsoft Configuration and scripts for Create React App.",
   "repository": "facebookincubator/create-react-app",
   "license": "BSD-3-Clause",
@@ -63,7 +63,7 @@
     "object-assign": "4.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
-    "react-dev-utils": "^0.4.3",
+    "react-dev-utils": "^0.4.2",
     "react-hot-loader": "^3.0.0-beta.6",
     "recursive-readdir": "2.1.0",
     "rimraf": "2.5.4",
