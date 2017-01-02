@@ -18,15 +18,15 @@
     "eslint-plugin-import": "1.12.0",
     "eslint-plugin-jsx-a11y": "2.2.2",
     "eslint-plugin-react": "6.3.0",
-    "lerna": "2.0.0-beta.30",
-    "lerna-changelog": "^0.2.3"
-  },
-  "dependencies": {
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
     "eslint-plugin-promise": "^3.3.2",
     "eslint-plugin-react": "^6.7.1",
     "eslint-plugin-standard": "^2.0.1",
+    "lerna": "2.0.0-beta.30",
+    "lerna-changelog": "^0.2.3"
+  },
+  "dependencies": {
     "react-hot-loader": "^3.0.0-beta.6"
   }
 }
