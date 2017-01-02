@@ -11,32 +11,27 @@
 var path = require('path');
 
 const plugins = [
-    // class { handleClick = () => { } }
-    require.resolve('babel-plugin-transform-class-properties'),
-    // { ...todo, completed: true }
-    require.resolve('babel-plugin-transform-object-rest-spread'),
-    // function* () { yield 42; yield 43; }
-    [require.resolve('babel-plugin-transform-regenerator'), {
-      // Async functions are converted to generators by babel-preset-latest
-      async: false
-    }],
-    // Polyfills the runtime needed for async/await and generators
-    [require.resolve('babel-plugin-transform-runtime'), {
-      helpers: false,
-      polyfill: false,
-      regenerator: true,
-      // Resolve the Babel runtime relative to the config.
-      moduleName: path.dirname(require.resolve('babel-runtime/package'))
-    }],
-    // The following two plugins are currently necessary to get
-    // babel-preset-env to work with rest/spread. More info here:
-    // https://github.com/babel/babel-preset-env#caveats
-    // https://github.com/babel/babel/issues/4074
-    // const { a, ...z } = obj;
-    require.resolve('babel-plugin-transform-es2015-destructuring'),
-    // const fn = ({ a, ...otherProps }) => otherProps;
-    require.resolve('babel-plugin-transform-es2015-parameters')
-  ];
+  // class { handleClick = () => { } }
+  require.resolve('babel-plugin-transform-class-properties'),
+  // The following two plugins use Object.assign directly, instead of Babel's
+  // extends helper. Note that this assumes `Object.assign` is available.
+  // { ...todo, completed: true }
+  [require.resolve('babel-plugin-transform-object-rest-spread'), {
+    useBuiltIns: true
+  }],
+  // Transforms JSX
+  [require.resolve('babel-plugin-transform-react-jsx'), {
+    useBuiltIns: true
+  }],
+  // Polyfills the runtime needed for async/await and generators
+  [require.resolve('babel-plugin-transform-runtime'), {
+    helpers: false,
+    polyfill: false,
+    regenerator: true,
+    // Resolve the Babel runtime relative to the config.
+    moduleName: path.dirname(require.resolve('babel-runtime/package'))
+  }]
+];
 
 // This is similar to how `env` works in Babel:
 // https://babeljs.io/docs/usage/babelrc/#env-option
@@ -54,6 +49,12 @@ if (env !== 'development' && env !== 'test' && env !== 'production') {
 }
 
 if (env === 'development' || env === 'test') {
+  // The following two plugins are currently necessary to make React warnings
+  // include more valuable information. They are included here because they are
+  // currently not enabled in babel-preset-react. See the below threads for more info:
+  // https://github.com/babel/babel/issues/4702
+  // https://github.com/babel/babel/pull/3540#issuecomment-228673661
+  // https://github.com/facebookincubator/create-react-app/issues/989
   plugins.push.apply(plugins, [
     // Adds component stack to warning messages
     require.resolve('babel-plugin-transform-react-jsx-source'),
@@ -63,12 +64,19 @@ if (env === 'development' || env === 'test') {
 }
 
 if (env === 'test') {
+  plugins.push.apply(plugins, [
+    // We always include this plugin regardless of environment
+    // because of a Babel bug that breaks object rest/spread without it:
+    // https://github.com/babel/babel/issues/4851
+    require.resolve('babel-plugin-transform-es2015-parameters')
+  ]);
+
   module.exports = {
     presets: [
       // ES features necessary for user's Node version
       [require('babel-preset-env').default, {
         targets: {
-          node: parseFloat(process.versions.node),
+          node: 'current',
         },
       }],
       // JSX, Flow
@@ -84,7 +92,13 @@ if (env === 'test') {
       // JSX, Flow
       require.resolve('babel-preset-react')
     ],
-    plugins: plugins
+    plugins: plugins.concat([
+      // function* () { yield 42; yield 43; }
+      [require.resolve('babel-plugin-transform-regenerator'), {
+        // Async functions are converted to generators by babel-preset-latest
+        async: false
+      }],
+    ])
   };
 
   if (env === 'production') {
@@ -99,4 +113,3 @@ if (env === 'test') {
     // ]);
   }
 }
-
