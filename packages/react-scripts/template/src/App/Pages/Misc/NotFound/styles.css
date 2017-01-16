@@ -1,0 +1,18 @@
+:local(.container) {
+  margin-top: -20%;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+}
+
+:local(.container) a {
+  font-size: 16px;
+  color: #fff;
+}
+
+:local(.logo) {
+  width: 70px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}

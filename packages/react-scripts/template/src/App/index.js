@@ -1,18 +1,19 @@
 import React from 'react'
-import styles from './styles.css'
+import Root from 'App/Root'
+import Pages from './Pages'
+import { Router, Route, browserHistory } from 'react-router'
 
 export default class App extends React.Component {
 
-  static propTypes = {
-
-  }
-
   render () {
     return (
-      <div className={styles.app}>
-        orionsoft.io
-      </div>
+      <Root>
+        <Router history={browserHistory}>
+          <Route component={Root}>
+            {Pages}
+          </Route>
+        </Router>
+      </Root>
     )
   }
-
 }
