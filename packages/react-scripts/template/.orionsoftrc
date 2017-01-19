@@ -1,0 +1,5 @@
+{
+  "i18nPaths": [
+    "src/App/i18n/strings"
+  ]
+}

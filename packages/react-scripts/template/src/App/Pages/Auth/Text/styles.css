@@ -1,0 +1,18 @@
+:local(.container) {
+  width: 100%;
+}
+
+:local(.input) {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  background-color: #eee;
+  padding: 10px;
+}
+
+:local(.input):focus {
+  outline: none;
+}
