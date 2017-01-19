@@ -32,7 +32,7 @@ export default function (role) {
               Not allowed
             </div>
             <div style={styles.needRole}>
-              You need the role "role"
+              You need the role "{role}"
             </div>
           </div>
         )
