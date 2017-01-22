@@ -28,6 +28,7 @@ export default class VerifyEmail extends React.Component {
       await verifyEmail({token: this.props.token}, this.props.client)
       this.props.onSuccess()
       this.props.setLoading(false)
+      this.props.client.resetStore()
     } catch (error) {
       this.setState({error: error.message})
       this.props.setLoading(false)

@@ -1,6 +1,6 @@
 import ApolloClient, {createNetworkInterface} from 'apollo-client'
 import {addTypenameToSelectionSet} from 'apollo-client/queries/queryTransform'
-import {getLoginToken} from 'meteor-apollo-accounts'
+import {getLoginToken, onTokenChange} from 'meteor-apollo-accounts'
 import baseURL from './url'
 
 export const createMeteorNetworkInterface = () => {
@@ -35,5 +35,9 @@ const config = {
 }
 
 const apollo = new ApolloClient(config)
+
+onTokenChange(function () {
+  apollo.resetStore()
+})
 
 export default apollo
