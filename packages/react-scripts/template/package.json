@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "orionsoft-react-scripts": "^0.8.15"
+    "orionsoft-react-scripts": "^0.8.16"
   },
   "dependencies": {
     "apollo-client": "^0.6.0",
