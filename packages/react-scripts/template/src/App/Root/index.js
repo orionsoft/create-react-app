@@ -2,6 +2,7 @@ import React from 'react'
 import apolloClient from './apollo'
 import {ApolloProvider} from 'react-apollo'
 import MeProvider from './MeProvider'
+import './locale'
 
 export default class Root extends React.Component {
 
