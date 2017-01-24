@@ -7,13 +7,11 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <Root>
-        <Router history={browserHistory}>
-          <Route component={Root}>
-            {Pages}
-          </Route>
-        </Router>
-      </Root>
+      <Router history={browserHistory}>
+        <Route component={Root}>
+          {Pages}
+        </Route>
+      </Router>
     )
   }
 }
