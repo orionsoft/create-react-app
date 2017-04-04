@@ -16,12 +16,14 @@ export default class Forgot extends React.Component {
 
   static propTypes = {
     setLoading: React.PropTypes.func,
+    isLoading: React.PropTypes.bool,
     setError: React.PropTypes.func,
     client: React.PropTypes.object
   }
 
   @autobind
   async send () {
+    if (!this.canSend()) return
     this.props.setLoading(true)
     this.props.setError(null)
     try {
@@ -41,7 +43,7 @@ export default class Forgot extends React.Component {
   renderButtons () {
     return (
       <div className={styles.buttonsContainer}>
-        <Button disabled={!this.canSend()} onClick={this.send}>
+        <Button primary loading={this.props.isLoading} disabled={!this.canSend()} onClick={this.send}>
           <Translate tr='auth.forgot.resetPassword' />
         </Button>
       </div>
@@ -60,7 +62,7 @@ export default class Forgot extends React.Component {
     if (this.state.isReady) return this.renderReady()
     return (
       <div>
-        <Form state={this.state} onChange={changes => this.setState(changes)}>
+        <Form state={this.state} onChange={changes => this.setState(changes)} onSubmit={this.send}>
           <Field
             fieldName='email'
             type={Text}
